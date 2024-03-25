@@ -1,5 +1,5 @@
-TRABAJO EN EQUIPO 
-
-Lucas Viguera
-
+TRABAJO COLABORATIVO
 Valentin Molina
+Lucas Viguera
+Julieta Striglio
+Tomas Frattin
