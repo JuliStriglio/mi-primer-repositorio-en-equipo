@@ -1,1 +1,1 @@
-Esto es una prueba
+Esto es una prueba![foto.jpg](..%2F..%2FDesktop%2FUTN%2FFacultad%202024%20apuntes%2FSoporte%20de%20la%20Gestion%20de%20Datos%2Ffoto.jpg)
