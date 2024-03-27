@@ -1,26 +1,25 @@
 """Tuple, Enumerate, Zip, Args.
 
-
 Contexto: Se tiene un programa que lee diferentes listas de una tabla en una
 base de datos y se quieren combinar estas listas para que luego puedan crearse
-los objetos de la capa de negocio.
-"""
-
+los objetos de la capa de negocio."""
 
 from typing import Any, List, Tuple
 
 nombre_articulos = ["ventana", "lámpara", "shampoo"]
 precio_articulos = [100.48, 16.42, 5.20]
 
-
 def combinar_basico(nombres: List[str], precios: List[float]) -> Tuple[Any]:
     """Toma dos listas y devuelve una tupla de duplas con los componentes de
-    las listas.
+    las listas. Restricción: Resolver utilizando un bucle for."""
 
-    Restricción: Resolver utilizando un bucle for.
-    """
-    pass # Completar
+    if len(nombres) != len(precios):
+        raise ValueError("Las listas deben tener la misma longitud")
+    combinacion = []
+    for i in range(len(nombres)):
+        combinacion.append((nombres[i], precios[i]))
 
+    return tuple(combinacion)
 
 # NO MODIFICAR - INICIO
 respuesta = (
@@ -41,10 +40,14 @@ id_articulos = [6852, 1459, 3578]
 
 def combinar_enumerate(nombres: List[str], precios: List[float], ids: List[int]) -> Tuple[Any]:
     """Re-Escribir utilizando enumerate y agregando un nuevo componente.
-    Referencia: https://docs.python.org/3/library/functions.html#enumerate
-    """
-    pass # Completar
+    Referencia: https://docs.python.org/3/library/functions.html#enumerate """
+    if len(nombres) != len(precios) != len(ids):
+        raise ValueError("Las listas deben tener la misma longitud")
+    combinacion2 = []
+    for i in range(len(nombres)):
+        combinacion2.append((nombres[i], precios[i], ids[i]))
 
+    return tuple(combinacion2)
 
 # NO MODIFICAR - INICIO
 respuesta = (
@@ -65,10 +68,11 @@ id_articulos = [6852, 1459, 3578]
 
 def combinar_zip(nombres: List[str], precios: List[float], ids: List[int]) -> Tuple[Any]:
     """Re-Escribir utilizando zip.
-    Referencia: https://docs.python.org/3/library/functions.html#zip
-    """
-    pass # Completar
+    Referencia: https://docs.python.org/3/library/functions.html#zip"""
 
+    if len(nombres) != len(precios) != len(ids):
+        raise ValueError("Las listas deben tener la misma longitud")
+    return tuple(zip(nombres, precios, ids))
 
 # NO MODIFICAR - INICIO
 respuesta = (
@@ -91,9 +95,11 @@ importado_articulos = [True, False, True]
 
 def combinar_zip_args(*args) -> Tuple[Any]:
     """Re-Escribir utilizando zip y una cantidad arbitraria de componentes.
-    Referencia: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists
-    """
-    pass # Completar
+    Referencia: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists"""
+
+    if len(set(len(arg) for arg in args)) != 1:
+        raise ValueError("Todas las listas deben tener la misma longitud")
+    return tuple(zip(*args))
 
 
 # NO MODIFICAR - INICIO
