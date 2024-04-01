@@ -1,0 +1,140 @@
+<CustButton@Button>:
+    font_size: 32
+    background_color: 0.6, 0.6, 0.6, 1
+
+<CalcGridLayout>:
+    id: calculator
+    display: entry
+    cols: 2
+    padding: 3
+    spacing: 3
+
+    # Columna para la salida y los botones
+    BoxLayout:
+        orientation: 'vertical'
+
+        spacing: 3
+
+        TextInput:
+            id: entry
+            font_size: 40
+            multiline: False
+            size_hint_y: 0.4  # Ajusta este valor según tus necesidades
+
+        GridLayout:
+            cols: 4
+            spacing: 3
+            
+            CustButton:
+                text: "C"
+                on_press: entry.text = entry.text[:-1]
+            CustButton:
+                text: "√"
+                on_press:
+                    # Captura el valor actual en el TextInput y conviértelo a float
+                    current_value = float(entry.text)
+                    
+                    # Calcula la raíz cuadrada del valor actual
+                    square_root = current_value ** 0.5
+                    
+                    # Actualiza el TextInput con el resultado de la raíz cuadrada
+                    entry.text = str(square_root)
+            CustButton:
+                text: "^2"
+                on_press: entry.text += "**2"
+            CustButton:
+                text: "/"
+                on_press: entry.text += self.text
+
+
+            CustButton:
+                text: "7"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "8"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "9"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "*"
+                on_press: entry.text += self.text            
+
+
+            CustButton:
+                text: "4"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "5"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "6"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "-"
+                on_press: entry.text += self.text
+            
+            CustButton:
+                text: "1"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "2"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "3"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "+"
+                on_press: entry.text += self.text
+
+            CustButton:
+                text: "AC"
+                on_press: entry.text = ""
+            CustButton:
+                text: "0"
+                on_press: entry.text += self.text
+            CustButton:
+                text: "."
+                on_press: entry.text += self.text
+            CustButton:
+                text: "="
+                on_press: calculator.calculate(entry.text)               
+
+    # Columna para el historial de operaciones
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.75
+        spacing: 3
+
+        Label:
+            id: history_label
+            text: "Historial"
+            font_size: 24
+            size_hint_y: 0.1
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size                    
+
+        ScrollView:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size         
+            Label:
+                id: history_text
+                text: ""
+                font_size: 24
+                size_hint_y: None
+                padding: 25
+                height: self.texture_size[1]
+                
+        CustButton:
+            text: "Borrar historial"
+            size_hint_y: 0.15
+            font_size: 18
+            on_release: root.borrar_historial()
