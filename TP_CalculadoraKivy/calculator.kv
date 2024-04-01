@@ -9,7 +9,6 @@
     padding: 3
     spacing: 3
 
-    # Columna para la salida y los botones
     BoxLayout:
         orientation: 'vertical'
 
@@ -19,7 +18,7 @@
             id: entry
             font_size: 40
             multiline: False
-            size_hint_y: 0.4  # Ajusta este valor según tus necesidades
+            size_hint_y: 0.4
 
         GridLayout:
             cols: 4
@@ -31,13 +30,8 @@
             CustButton:
                 text: "√"
                 on_press:
-                    # Captura el valor actual en el TextInput y conviértelo a float
                     current_value = float(entry.text)
-                    
-                    # Calcula la raíz cuadrada del valor actual
                     square_root = current_value ** 0.5
-                    
-                    # Actualiza el TextInput con el resultado de la raíz cuadrada
                     entry.text = str(square_root)
             CustButton:
                 text: "^2"
@@ -100,7 +94,6 @@
                 text: "="
                 on_press: calculator.calculate(entry.text)               
 
-    # Columna para el historial de operaciones
     BoxLayout:
         orientation: 'vertical'
         size_hint_x: 0.75
