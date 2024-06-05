@@ -1,0 +1,32 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint: (1, None)
+        height: 50
+        Button:
+            text: 'Clear'
+            size_hint: None, None
+            size: 100, 50
+            font_size: 20
+            on_press: drawing_pad.clear_canvas(self)
+        Button:
+            id: color_button
+            text: 'Color'
+            size_hint: None, None
+            size: 100, 50
+            font_size: 20
+            on_press: drawing_pad.change_color(self)
+        Button:
+            text: '+'
+            size_hint: None, None
+            size: 50, 50
+            font_size: 20
+            on_press: drawing_pad.increase_stroke_width(self)
+        Button:
+            text: '-'
+            size_hint: None, None
+            size: 50, 50
+            font_size: 20
+            on_press: drawing_pad.decrease_stroke_width(self)
+    DrawingPad:
+        id: drawing_pad
